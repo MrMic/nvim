@@ -9,6 +9,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
+" Plug 'vifm/neovim-vifm'
+" Plug 'tpope/vim-vinegar'
+Plug 'scrooloose/nerdtree'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
+Plug 'davidhalter/jedi'
 
 
 " Initialize plugin system
@@ -110,10 +115,30 @@ set rtp+=/usr/local/opt/fzf
 set nofoldenable
 
 " Activation/Desactivation de la enetre d'exploration de fichier
-" map <F9> <Esc>:NERDTreeToggle<CR>
-" map <F9> <Esc>:NERDTreeToggle<CR>
-map <F9> <plug>NERDTreeTabsToggle<CR>
+map <F9> <Esc>:NERDTreeToggle<CR>
+" map <F9> <plug>:NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+"  autocmd VimEnter * :Vexplore
+augroup END
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:python_host_prog = '/Users/mic/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/mic/.pyenv/versions/neovim3/bin/python'
 
